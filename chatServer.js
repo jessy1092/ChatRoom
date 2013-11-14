@@ -40,3 +40,4 @@ io.sockets.on('connection', function(socket)
 		io.sockets.emit('chat', 'SERVER', socket.username + ' has left the chat room.');
 	});
 });
+
