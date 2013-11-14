@@ -1,7 +1,6 @@
 var app = require('http').createServer(handler),
 	io = require('socket.io').listen(app),
-	fs = require('fs'),
-	test = require('jade');
+	fs = require('fs');
 
 app.listen(1092);
 
