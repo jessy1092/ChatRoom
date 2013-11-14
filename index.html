@@ -4,8 +4,8 @@
 	<title>Chat room</title>
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
-	
-		var socket = io.connect('http://localhost:1092');
+
+		var socket = io.connect('http://chat-room-1092.herokuapp.com/:1092');
 		socket.on('connect', function()
 		{
 			socket.emit('addme', prompt('who are you?'));
