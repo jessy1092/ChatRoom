@@ -24,14 +24,14 @@ function handler(req, res)
 
 io.sockets.on('connection', function(socket)
 {
-	socket.on('addme', function(username)
+	socket.on('addUser', function(username)
 	{
 		socket.username = username;
 		socket.emit('chat', 'SERVER', 'You have connected');
 		socket.broadcast.emit('chat', 'SERVER', username + ' is on deck');
 	});
 
-	socket.on('sendchat', function(data)
+	socket.on('sendChat', function(data)
 	{
 		io.sockets.emit('chat', socket.username, data);
 	});
