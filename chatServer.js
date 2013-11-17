@@ -1,26 +1,22 @@
-var app = require('http').createServer(handler),
-	io = require('socket.io').listen(app),
+var io = require('socket.io').listen(app),
+	express = require('express'),
 	fs = require('fs');
+var app = express();
+
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
+app.use(express.logger('dev'));
+app.use(express.static(__dirname + '/public'));
+
+app.get('/', function(req, res)
+{
+	res.render('index', {header: "Lee's 聊天室"});
+})
 
 port = process.env.PORT || 2000;
 app.listen(port);
 
-function handler(req, res)
-{
-	fs.readFile(__dirname + '/index.html', function(err, data)
-	{
-		if(err)
-		{
-			res.writeHead(500);
-			return res.end('Error loading index.html');
-		}
-		else
-		{
-			res.writeHead(200);
-			res.end(data);
-		}
-	});
-}
+
 
 io.sockets.on('connection', function(socket)
 {
