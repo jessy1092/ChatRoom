@@ -1,7 +1,9 @@
-var io = require('socket.io').listen(app),
-	express = require('express'),
+var express = require('express'),
+	app = express(),
+	http = require('http'),
+	server = http.createServer(app);
+	io = require('socket.io').listen(server),
 	fs = require('fs');
-var app = express();
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
@@ -10,11 +12,11 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res)
 {
-	res.render('index', {header: "Lee's 聊天室"});
+	res.render('index', {title: "Chat room", header: "Lee's 聊天室"});
 })
 
 port = process.env.PORT || 2000;
-app.listen(port);
+server.listen(port);
 
 
 
